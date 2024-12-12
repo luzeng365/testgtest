@@ -1,22 +1,24 @@
+```abc
+
+```
+
 # testgtest
 
 a demo for gtest
 
-
 #### **编译**
 
-1.
+```
+cd build
+rm -rf *
+cmake -G "MinGW Makefiles" ..
+mingw32-make.exe all
+```
 
-`cd build`
+#### 编译gtest
 
-2.
+按照gtest的的README.md编译，需要注意的是在cmake的时候需要指定安装的路径，否则make install时会出错
 
-`rm -rf *`
+`cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=d:/googletest ..`
 
-3.
-
-`cmake -G "MinGW Makefiles" ..`
-
-4.
-
-`mingw32-make.exe all`
+目前本机使用的是gcc 4.8.2的版本，编译gtest的时候使用v1.8.x版本，否则可能会存在版本不匹配错误
