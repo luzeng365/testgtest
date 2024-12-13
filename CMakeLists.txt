@@ -7,6 +7,10 @@ project(TestProject)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# 添加代码覆盖率编译选项
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fprofile-arcs -ftest-coverage --coverage")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -fprofile-arcs -ftest-coverage --coverage")
+
 # 设置 Google Test 的路径
 set(GTEST_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/googletest/include)
 set(GTEST_LIB ${PROJECT_SOURCE_DIR}/googletest/lib/libgtest.a)
@@ -28,8 +32,13 @@ add_executable(test_add_test
     source/test.cpp
 )
 
-# 链接 Google Test 库
-target_link_libraries(test_add_test ${GTEST_LIB} ${GTEST_MAIN_LIB} pthread)
+# 链接 Google Test 库和gcov库
+target_link_libraries(test_add_test 
+    ${GTEST_LIB} 
+    ${GTEST_MAIN_LIB} 
+    pthread 
+    gcov
+)
 
 # 设置输出目录
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
