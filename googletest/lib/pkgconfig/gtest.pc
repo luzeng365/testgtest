@@ -1,9 +1,9 @@
-libdir=D:/googletest/lib
-includedir=D:/googletest/include
+libdir=/mnt/e/testcode/gtestlib/lib
+includedir=/mnt/e/testcode/gtestlib/include
 
 Name: gtest
 Description: GoogleTest (without main() function)
-Version: 1.8.2
+Version: 1.15.2
 URL: https://github.com/google/googletest
 Libs: -L${libdir} -lgtest 
-Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=0 
+Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=1
