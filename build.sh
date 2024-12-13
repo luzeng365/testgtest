@@ -19,7 +19,11 @@ make
 ./../bin/test_add_test
 
 # 生成覆盖率数据，忽略 mismatch 警告
-lcov --capture --directory . --output-file coverage.info --ignore-errors mismatch
+COVERAGE_FILE=coverage.info
+REPORT_FOLDER=coverage_report
+lcov --rc lcov_branch_coverage=1 -c -d . -o ${COVERAGE_FILE}_tmp --ignore-errors mismatch
+lcov --rc lcov_branch_coverage=1  -e ${COVERAGE_FILE}_tmp "*source*" -o ${COVERAGE_FILE}
+genhtml --rc genhtml_branch_coverage=1 ${COVERAGE_FILE} -o ${REPORT_FOLDER}
 
 # 使用 genhtml 生成 HTML 覆盖率报告
 genhtml -o report coverage.info
